@@ -1,6 +1,6 @@
 const defaultCities = [
-  "Buenos Aires",
   "Asunción",
+  "Buenos Aires",
   "Bogota",
   "Madrid",
   "Santiago",
