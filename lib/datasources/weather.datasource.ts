@@ -58,6 +58,36 @@ class WeatherDatasource {
       description: weatherDetails?.description ?? "No description available",
     };
   }
+
+  async getCurrentWeatherByCoords(
+    lat: number,
+    lon: number
+  ): Promise<WeatherSnapshot> {
+    const query = new URLSearchParams({
+      lat: lat.toString(),
+      lon: lon.toString(),
+      units: "metric",
+      appid: this.apiKey,
+      lang: "es",
+    });
+
+    const response = await fetch(`${this.baseUrl}?${query.toString()}`);
+
+    if (!response.ok) {
+      throw new Error("Unable to fetch weather data for your location.");
+    }
+
+    const payload = await response.json();
+    const weatherDetails = payload.weather?.[0];
+
+    return {
+      city: payload.name,
+      countryCode: payload.sys?.country,
+      temperature: payload.main?.temp,
+      humidity: payload.main?.humidity,
+      description: weatherDetails?.description ?? "No description available",
+    };
+  }
 }
 
 export default WeatherDatasource;

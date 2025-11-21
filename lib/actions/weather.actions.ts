@@ -18,3 +18,10 @@ export async function getWeatherAction(
 
   return controller.getWeatherForCity(city);
 }
+
+export async function getWeatherByLocationAction(
+  lat: number,
+  lon: number
+): Promise<WeatherResponse> {
+  return controller.getWeatherByCoords(lat, lon);
+}

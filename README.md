@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Live Weather (Next.js)
 
-## Getting Started
+Modern weather search UI inspired by OpenWeather. Users can search any city, share the result via the `?city=` query string, and see live conditions fetched server-side with secure environment variables.
 
-First, run the development server:
+## Requirements
+- Node.js >= 18.18 (tested with 20.x)
+- npm (ships with Node)  
+- An OpenWeather API key
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Setup & Run
+1. Install dependencies: `npm install`
+2. Copy env template and add your key:  
+   - PowerShell: `Copy-Item .env.example .env`  
+   - Bash: `cp .env.example .env`  
+   - Set `OPENWEATHER_API_KEY=<your_key>` in `.env`
+3. Start the dev server: `npm run dev` → http://localhost:3000  
+   - Example shareable URL: `http://localhost:3000/?city=Bogota`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Production build
+- Lint (optional but recommended): `npm run lint`
+- Build: `npm run build`
+- Serve production build: `npm start` (requires `OPENWEATHER_API_KEY` in the environment)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Testing
+- Unit/component tests: `npm test`
+- Watch mode: `npm run test:watch`
+- Coverage report: `npm run test:coverage` (outputs to `coverage/`)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Configuration
+- `OPENWEATHER_API_KEY` (required): Your OpenWeather API key. Needed for server-side fetches in `lib/datasources/weather.datasource.ts`. An error is thrown at startup if it's missing.
 
-## Learn More
+## Project layout
+- `app/page.tsx` — main page, server-rendered weather view
+- `components/` — UI pieces (`CityInput`, `CityList`, `Weather`, `Logo`)
+- `lib/actions/weather.actions.ts` — server action entrypoint for fetching weather
+- `lib/controllers/weather.controller.ts` — converts inputs to datasource calls and error shapes
+- `lib/datasources/weather.datasource.ts` — OpenWeather client with input validation
+- `settings.ts` — central place for environment variables
+- `public/` — static assets
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Troubleshooting
+- Missing key error: ensure `.env` exists with `OPENWEATHER_API_KEY` and restart the server.
+- 404/invalid city responses come directly from OpenWeather; double-check spelling.
+- If ports are in use, run `npm run dev -- --port 3001` (or another free port).

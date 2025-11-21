@@ -1,4 +1,5 @@
 import { getWeatherAction } from "@/lib/actions/weather.actions";
+import AutoLocation from "@/components/AutoLocation";
 import CityInput from "@/components/CityInput";
 import CityList from "@/components/CityList";
 import Weather from "@/components/Weather";
@@ -20,6 +21,8 @@ export default async function Home({
   const weatherResponse = cityQuery
     ? await getWeatherAction(cityQuery)
     : undefined;
+  
+  const shouldAutoDetect = !cityQuery;
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -51,6 +54,7 @@ export default async function Home({
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-blue-50 text-slate-900">
+      {shouldAutoDetect && <AutoLocation />}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -70,9 +74,6 @@ export default async function Home({
                 Forecast inspired by OpenWeather
               </h1>
             </div>
-          </div>
-          <div className="rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm ring-1 ring-white/80">
-            Server-rendered with real data
           </div>
         </header>
 

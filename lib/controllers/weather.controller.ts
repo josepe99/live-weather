@@ -21,4 +21,21 @@ export default class WeatherController {
       return { error: message };
     }
   }
+
+  async getWeatherByCoords(
+    lat: number,
+    lon: number
+  ): Promise<WeatherResponse> {
+    try {
+      const data = await this.datasource.getCurrentWeatherByCoords(lat, lon);
+      return { data };
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Unexpected error fetching weather data.";
+
+      return { error: message };
+    }
+  }
 }
