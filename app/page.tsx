@@ -60,24 +60,24 @@ export default async function Home({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <div className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-gradient-to-br from-blue-100/80 via-sky-50 to-white blur-2xl" />
-      <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-8 px-6 py-12">
-        <header className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
+      <main className="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:px-10">
+        <header className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-3 sm:gap-4">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-400 text-white shadow-lg ring-2 ring-white/80">
               <Logo />
             </div>
-            <div>
+            <div className="space-y-1">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
                 Live Weather
               </p>
-              <h1 className="text-3xl font-bold leading-tight text-slate-900">
+              <h1 className="text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">
                 Forecast inspired by OpenWeather
               </h1>
             </div>
           </div>
         </header>
 
-        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="flex flex-col gap-4">
             <div className="rounded-3xl border border-white/60 bg-white/70 px-6 py-5 shadow-lg backdrop-blur">
               <h2 className="text-lg font-semibold text-slate-900">

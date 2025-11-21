@@ -29,7 +29,7 @@ export default function CityList({
         </div>
         <p className="text-sm text-zinc-500">Tap to view a city</p>
       </header>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {cities.map((city) => {
           const isActive =
             activeCity &&

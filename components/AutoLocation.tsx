@@ -51,8 +51,8 @@ export default function AutoLocation() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/20 backdrop-blur-sm">
-      <div className="rounded-3xl border border-white/60 bg-white/90 px-8 py-6 shadow-2xl backdrop-blur">
-        <div className="flex items-center gap-4">
+      <div className="w-[min(92vw,420px)] rounded-3xl border border-white/60 bg-white/90 px-6 py-5 shadow-2xl backdrop-blur sm:px-8 sm:py-6">
+        <div className="flex items-center gap-3 sm:gap-4">
           <div className="h-10 w-10 animate-spin rounded-full border-4 border-sky-200 border-t-sky-600"></div>
           <div>
             <p className="text-lg font-semibold text-slate-900">

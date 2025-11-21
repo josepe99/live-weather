@@ -34,10 +34,15 @@ export default function CityInput({ defaultValue = "" }: CityInputProps) {
           } else if (weatherResponse.error) {
             alert(weatherResponse.error);
           }
-        }finally {
+        } finally {
           setIsLoadingLocation(false);
         }
       },
+      (err) => {
+        console.log("Location not available:", err.message);
+        setIsLoadingLocation(false);
+        alert("We could not use your location. Try searching by city name instead.");
+      }
     );
   };
 
@@ -51,7 +56,7 @@ export default function CityInput({ defaultValue = "" }: CityInputProps) {
         <label htmlFor="city" className="sr-only">
           Search for a city
         </label>
-        <div className="flex items-center gap-3 rounded-[26px] bg-white/80 px-4 py-2.5 shadow-inner ring-1 ring-zinc-200">
+        <div className="flex flex-wrap items-center gap-3 rounded-[26px] bg-white/80 px-4 py-2.5 shadow-inner ring-1 ring-zinc-200">
           <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-200 to-orange-300 text-zinc-900 shadow-sm ring-1 ring-amber-100">
             <svg
               aria-hidden
@@ -75,11 +80,11 @@ export default function CityInput({ defaultValue = "" }: CityInputProps) {
             autoComplete="off"
             placeholder="Search city, e.g. Bogota"
             defaultValue={defaultValue}
-            className="flex-1 bg-transparent text-lg font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none"
+            className="min-w-0 flex-1 bg-transparent text-lg font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none sm:min-w-[240px]"
           />
           <button
             type="submit"
-            className="rounded-2xl bg-gradient-to-r from-sky-500 to-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:from-sky-600 hover:to-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+            className="w-full flex-shrink-0 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:from-sky-600 hover:to-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:w-auto"
           >
             Get weather
           </button>

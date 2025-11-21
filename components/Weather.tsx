@@ -36,13 +36,13 @@ export default function Weather({ data, error, requestedCity }: WeatherProps) {
   const { city, countryCode, temperature, humidity, description } = data;
 
   return (
-    <section className="w-full overflow-hidden rounded-3xl border border-white/50 bg-gradient-to-br from-sky-100 via-white to-blue-100 px-6 py-6 shadow-xl ring-1 ring-white/50">
-      <header className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-        <div>
+    <section className="w-full overflow-hidden rounded-3xl border border-white/50 bg-gradient-to-br from-sky-100 via-white to-blue-100 px-5 py-5 shadow-xl ring-1 ring-white/50 sm:px-6 sm:py-6">
+      <header className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-1">
+        <div className="min-w-0">
           <p className="text-sm font-semibold uppercase tracking-[0.12em] text-zinc-500">
             Current conditions
           </p>
-          <h2 className="text-3xl font-bold text-slate-900">
+          <h2 className="text-2xl font-bold leading-snug text-slate-900 sm:text-3xl">
             {city}
             {countryCode ? (
               <span className="text-lg font-semibold text-slate-500">
@@ -59,17 +59,17 @@ export default function Weather({ data, error, requestedCity }: WeatherProps) {
       </header>
 
       <div className="mt-6 grid gap-6 md:grid-cols-[1.2fr_0.8fr]">
-        <div className="relative overflow-hidden rounded-3xl bg-white/80 p-6 shadow-lg ring-1 ring-white/70">
+        <div className="relative overflow-hidden rounded-3xl bg-white/80 p-5 shadow-lg ring-1 ring-white/70 sm:p-6">
           <div className="absolute inset-0 bg-gradient-to-br from-sky-100/80 via-transparent to-blue-200/60" />
-          <div className="relative flex items-start justify-between">
-            <div>
+          <div className="relative flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0 space-y-1">
               <p className="text-sm font-semibold uppercase tracking-[0.08em] text-slate-600">
                 Temperature
               </p>
-              <p className="text-6xl font-bold leading-none text-slate-900">
+              <p className="text-5xl font-bold leading-none text-slate-900 sm:text-6xl">
                 {`${Math.round(temperature)}\u00b0C`}
               </p>
-              <p className="mt-2 text-lg font-medium capitalize text-slate-600">
+              <p className="pt-1 text-base font-medium capitalize text-slate-600 sm:pt-2 sm:text-lg">
                 {description}
               </p>
             </div>
@@ -107,7 +107,7 @@ export default function Weather({ data, error, requestedCity }: WeatherProps) {
           </div>
         </div>
 
-        <div className="grid h-full gap-4">
+        <div className="grid h-full gap-4 sm:grid-cols-2 md:grid-cols-1">
           <div className="rounded-3xl bg-white/85 p-4 shadow-md ring-1 ring-white/60">
             <div className="flex items-center justify-between">
               <p className="text-sm font-semibold text-slate-700">
