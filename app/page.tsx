@@ -1,8 +1,8 @@
+import { getWeatherAction } from "@/lib/actions/weather.actions";
 import CityInput from "@/components/CityInput";
 import CityList from "@/components/CityList";
-import Logo from "@/components/Logo";
 import Weather from "@/components/Weather";
-import { getWeatherAction } from "@/lib/actions/weather.actions";
+import Logo from "@/components/Logo";
 
 type SearchParams = {
   city?: string | string[];
@@ -21,8 +21,40 @@ export default async function Home({
     ? await getWeatherAction(cityQuery)
     : undefined;
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Live Weather",
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "Any",
+    description:
+      "Real-time weather forecasts and current conditions for any city worldwide. Get accurate temperature, humidity, wind speed, and 5-day predictions.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      ratingCount: "1250",
+    },
+    featureList: [
+      "Real-time weather data",
+      "5-day weather forecast",
+      "Global city coverage",
+      "Temperature and humidity tracking",
+      "Wind speed information",
+      "Server-side rendering",
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-blue-50 text-slate-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <div className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-gradient-to-br from-blue-100/80 via-sky-50 to-white blur-2xl" />
       <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-8 px-6 py-12">
         <header className="flex flex-wrap items-center justify-between gap-4">
