@@ -1,6 +1,6 @@
 const defaultCities = [
   "Buenos Aires",
-  "Mexico City",
+  "Asunción",
   "Bogota",
   "Madrid",
   "Santiago",
@@ -39,13 +39,13 @@ export default function CityList({
             <a
               key={city}
               href={`/?city=${encodeURIComponent(city)}`}
-              className={`group relative overflow-hidden rounded-2xl border px-4 py-3 text-sm font-semibold transition ${
+              className={`group relative flex items-center justify-center overflow-hidden rounded-2xl border px-4 py-3 text-sm font-semibold transition ${
                 isActive
                   ? "border-blue-300 bg-gradient-to-br from-blue-50 to-sky-100 text-blue-800 shadow-inner"
                   : "border-white/65 bg-white/60 text-zinc-700 hover:-translate-y-0.5 hover:border-blue-100 hover:shadow-lg"
               }`}
             >
-              <span>{city}</span>
+              <span className="relative z-10">{city}</span>
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-blue-100/40 opacity-0 transition group-hover:opacity-100" />
             </a>
           );
