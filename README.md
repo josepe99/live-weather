@@ -2,6 +2,8 @@
 
 Modern weather search UI inspired by OpenWeather. Users can search any city, share the result via the `?city=` query string, and see live conditions fetched server-side with secure environment variables.
 
+**Live Demo:** https://live-weather-ruddy.vercel.app
+
 ## Requirements
 - Node.js >= 18.18 (tested with 20.x)
 - npm (ships with Node)  
